@@ -99,58 +99,13 @@ Apply these heuristics:
 
 ## Step 7: Read the chosen variant PDF
 
-Read `VARIANT_PDF_BASE - [Full|Medium|Recent].pdf`. This is the source of truth for all bullet text in the rewrite cards.
-
-**As you read, record the exact text of every bullet verbatim** — you will quote these character-for-character in Step 8. Do not paraphrase or condense anything at this stage.
+Read `VARIANT_PDF_BASE - [Full|Medium|Recent].pdf`. Do not paraphrase or condense anything — you will transcribe the exact bullet text verbatim into the work file in Step 8 immediately after.
 
 ---
 
-## Step 8: Produce targeted rewrites
+## Step 8: Write the work file
 
-For each **Gap** or **Partial** row, write a specific improved bullet using material from the career background KB. Group by section.
-
-**2026 rewrite conventions (apply to all bullets):**
-- Lead with the outcome, not the activity: "Reduced build times 60% by migrating CI pipeline to…" not "Migrated CI pipeline to…"
-- Every bullet needs a number if one exists in any source document; approximate ranges ("~30%", "3×") are acceptable if validated
-- Match the JD's exact terminology, not synonyms
-- AI/ML bullets must name a specific production use case or measurable outcome; generic "leveraged AI tooling" is a signal liability
-
-**Take2 bullets** — rewrites for the current role section
-**Thanx bullets** — rewrites pulling from the right phase (Lead / Senior / Early)
-**Skills section** — any changes to how skills are listed or ordered
-**Summary line** — one rewritten summary sentence optimized for this role
-
-Format each rewrite card:
-
-> **Current:** [exact bullet from chosen variant PDF, or "missing"]
-> **Rewrite:** [improved version]
-> **Why:** [what gap this addresses]
-
-**Verbatim rule for "Current" field — no exceptions:**
-- Copy the text character-for-character from the PDF you read in Step 7. No summarizing, paraphrasing, or condensing.
-- If a rewrite consolidates multiple bullets, list all source bullets in the Current field, one per line, each verbatim.
-- "Missing" is only valid for genuinely new bullets with no corresponding PDF bullet. If you cannot locate the bullet in the PDF text, re-read the PDF before writing "missing".
-- Before returning output, self-check: open each "Current" value and confirm you can find that exact string in the Step 7 PDF text. If you cannot, correct it.
-
-**New Bullet vs Rewrite — strict definition:**
-- **New Bullet**: content that has no corresponding bullet anywhere in the chosen variant PDF (skills not yet listed, stories not yet told).
-- **Rewrite**: any bullet where the proposed text is a reframe, reword, or outcome-first restructure of an existing PDF bullet — even if the analyst didn't initially flag that bullet as a Gap/Partial. "Present in the resume but not in my initial tailored set" is always a Rewrite, never a New Bullet.
-- Before labeling any card "New Bullet", confirm the proposed content cannot be traced to any bullet in the Step 7 PDF. If you find a match (even partial), use a Rewrite card with the verbatim PDF text as "Current".
-
----
-
-## Step 9: Narrative gap notes
-
-Separate from the technical gap table, flag:
-- Which career narrative to lead with for this role type (use the Application Guidance section of the career KB)
-- Any values alignment or mission framing the cover letter should address
-- Any background to downplay or reframe (e.g., full-stack → frontend lean; Thanx loyalty/marketing context for privacy-focused roles)
-
----
-
-## Step 10: Write the work file
-
-Write to `/tmp/tailor-resume-<company-slug>-work.md`:
+Write to `/tmp/tailor-resume-<company-slug>-work.md` **now, before writing any rewrite cards**:
 
 ```markdown
 # tailor-resume work file — [Company Name] / [Role Title]
@@ -180,7 +135,54 @@ Variant: [Full|Medium|Recent]
 [exact VFX section(s) from chosen variant PDF, or "Omitted — Recent variant"]
 ```
 
-This file is the canonical source for downstream reviewer and company-rep agents — they read it by path, never receive content pasted.
+This file is the **sole source of "Current" text** for all rewrite cards in Step 9. The orchestrator runs a string-match QA pass against this file after you return — any "Current" that does not appear verbatim in the "Resume bullets" section will be flagged as a hallucination.
+
+This file is also the canonical source for downstream reviewer and company-rep agents — they read it by path, never receive content pasted.
+
+---
+
+## Step 9: Produce targeted rewrites
+
+For each **Gap** or **Partial** row, write a specific improved bullet using material from the career background KB. Group by section.
+
+**2026 rewrite conventions (apply to all bullets):**
+- Lead with the outcome, not the activity: "Reduced build times 60% by migrating CI pipeline to…" not "Migrated CI pipeline to…"
+- Every bullet needs a number if one exists in any source document; approximate ranges ("~30%", "3×") are acceptable if validated
+- Match the JD's exact terminology, not synonyms
+- AI/ML bullets must name a specific production use case or measurable outcome; generic "leveraged AI tooling" is a signal liability
+
+**Take2 bullets** — rewrites for the current role section
+**Thanx bullets** — rewrites pulling from the right phase (Lead / Senior / Early)
+**Skills section** — any changes to how skills are listed or ordered
+**Summary line** — one rewritten summary sentence optimized for this role
+
+Format each rewrite card:
+
+> **Current:** [exact bullet from the work file you just wrote in Step 8, or "missing"]
+> **Rewrite:** [improved version]
+> **Why:** [what gap this addresses]
+
+**Verbatim rule for "Current" — enforced by downstream string-match QA:**
+- Open the work file you wrote in Step 8. Copy "Current" text character-for-character from its "Resume bullets" section. You have the file — read from it, do not rely on memory of the PDF.
+- If a rewrite consolidates multiple bullets, list all source bullets in the Current field, one per line, each verbatim from the work file.
+- "Missing" is only valid if no corresponding bullet exists anywhere in the work file's "Resume bullets" section.
+
+**Why text constraint:**
+- The Why field may only reference phrases that appear verbatim in either the Current row or the Rewrite row you have written. Never quote a phrase from a paraphrase or summary you constructed — only from the rows on the card itself.
+
+**New Bullet vs Rewrite — strict definition:**
+- **New Bullet**: content that has no corresponding bullet anywhere in the work file's "Resume bullets" section (skills not yet listed, stories not yet told).
+- **Rewrite**: any bullet where the proposed text is a reframe, reword, or outcome-first restructure of an existing work-file bullet — even if that bullet wasn't initially flagged as a Gap/Partial. "Present in the resume but not in my initial tailored set" is always a Rewrite, never a New Bullet.
+- Before labeling any card "New Bullet", search the work file for any bullet whose content overlaps the proposed text. If you find a match, use a Rewrite card with the verbatim work-file text as "Current".
+
+---
+
+## Step 10: Narrative gap notes
+
+Separate from the technical gap table, flag:
+- Which career narrative to lead with for this role type (use the Application Guidance section of the career KB)
+- Any values alignment or mission framing the cover letter should address
+- Any background to downplay or reframe (e.g., full-stack → frontend lean; Thanx loyalty/marketing context for privacy-focused roles)
 
 ---
 
