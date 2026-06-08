@@ -101,6 +101,8 @@ Apply these heuristics:
 
 Read `VARIANT_PDF_BASE - [Full|Medium|Recent].pdf`. This is the source of truth for all bullet text in the rewrite cards.
 
+**As you read, record the exact text of every bullet verbatim** — you will quote these character-for-character in Step 8. Do not paraphrase or condense anything at this stage.
+
 ---
 
 ## Step 8: Produce targeted rewrites
@@ -118,11 +120,17 @@ For each **Gap** or **Partial** row, write a specific improved bullet using mate
 **Skills section** — any changes to how skills are listed or ordered
 **Summary line** — one rewritten summary sentence optimized for this role
 
-Format each rewrite card (include exact current text from the chosen variant PDF):
+Format each rewrite card:
 
 > **Current:** [exact bullet from chosen variant PDF, or "missing"]
 > **Rewrite:** [improved version]
 > **Why:** [what gap this addresses]
+
+**Verbatim rule for "Current" field — no exceptions:**
+- Copy the text character-for-character from the PDF you read in Step 7. No summarizing, paraphrasing, or condensing.
+- If a rewrite consolidates multiple bullets, list all source bullets in the Current field, one per line, each verbatim.
+- "Missing" is only valid for genuinely new bullets with no corresponding PDF bullet. If you cannot locate the bullet in the PDF text, re-read the PDF before writing "missing".
+- Before returning output, self-check: open each "Current" value and confirm you can find that exact string in the Step 7 PDF text. If you cannot, correct it.
 
 ---
 
