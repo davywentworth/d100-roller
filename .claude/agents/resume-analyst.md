@@ -132,6 +132,11 @@ Format each rewrite card:
 - "Missing" is only valid for genuinely new bullets with no corresponding PDF bullet. If you cannot locate the bullet in the PDF text, re-read the PDF before writing "missing".
 - Before returning output, self-check: open each "Current" value and confirm you can find that exact string in the Step 7 PDF text. If you cannot, correct it.
 
+**New Bullet vs Rewrite — strict definition:**
+- **New Bullet**: content that has no corresponding bullet anywhere in the chosen variant PDF (skills not yet listed, stories not yet told).
+- **Rewrite**: any bullet where the proposed text is a reframe, reword, or outcome-first restructure of an existing PDF bullet — even if the analyst didn't initially flag that bullet as a Gap/Partial. "Present in the resume but not in my initial tailored set" is always a Rewrite, never a New Bullet.
+- Before labeling any card "New Bullet", confirm the proposed content cannot be traced to any bullet in the Step 7 PDF. If you find a match (even partial), use a Rewrite card with the verbatim PDF text as "Current".
+
 ---
 
 ## Step 9: Narrative gap notes
